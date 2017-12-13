@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Message Board</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+</head>
+
+<body>
+    <h1>The Message Board</h1>
+    <form action="/posts" method="post">
+        Name: <input type="text" name="name"> <br> Post: <input type="text" name="post"> <br>
+        <input type="submit" value="Submit!">
+    </form>
+    <hr>
+
+    <% for(var post of posts){ %>
+        <p>Name:
+            <%= post.name %>
+        </p>
+        <p>Post:
+            <%= post.post %>
+        </p>
+        <form action="/comments/<%= post.id %>" method="post">
+            Name: <input type="text" name="name"> <br> Comment: <input type="text" name="comment"> <br>
+            <input type="submit" value="Submit!">
+        </form>
+        <% for(var comment of post._comments){ %>
+            <p>Name:
+                <%= comment.name %>
+            </p>
+            <p>Comment:
+                <%= comment.comment %>
+            </p>
+            <% } %>
+                <hr>
+                <% } %>
+
+
+</body>
+
+</html>
